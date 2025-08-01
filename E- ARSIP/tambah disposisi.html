@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tambah Disposisi - Kwarran Pule</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #lembar-disposisi, #lembar-disposisi * {
+        visibility: visible;
+      }
+      #lembar-disposisi {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white h-screen shadow-md fixed">
+    <div class="flex items-center justify-between p-4 border-b">
+      <img src="Pramuka_Jawa_Timur.png" alt="Logo" class="h-10">
+      <div class="text-center text-xs">
+        <p class="font-bold text-teal-700">Kwarran Pule</p>
+        <p class="text-gray-500">e-Arsip</p>
+      </div>
+      <img src="Pramuka_Jawa_Timur.png" alt="Logo" class="h-10">
+    </div>
+    <nav class="p-4 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 px-4 rounded hover:bg-teal-100">🏠 Dashboard</a>
+      <a href="surat masuk.html" class="block py-2 px-4 rounded hover:bg-teal-100">📥 Surat Masuk</a>
+      <a href="surat keluar.html" class="block py-2 px-4 rounded hover:bg-teal-100">📤 Surat Keluar</a>
+      <a href="disposisi.html" class="block py-2 px-4 rounded bg-teal-600 text-white">📌 Disposisi</a>
+      <a href="#" class="block py-2 px-4 rounded hover:bg-teal-100">📑 Laporan</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="ml-64 p-6">
+    <div class="max-w-4xl bg-white rounded-xl shadow p-6 border-t-4 border-teal-600">
+
+      <!-- KOP + FORM DISPOSISI -->
+      <div id="lembar-disposisi" class="text-sm leading-tight text-black border p-6">
+        <div class="flex justify-between items-center border-b pb-2 mb-4">
+          <div>
+            <p class="font-bold uppercase text-sm">KWARTIR RANTING GERAKAN PRAMUKA PULE</p>
+            <p class="text-xs">Alamat: Jl. Raya Pule, Kecamatan Pule</p>
+          </div>
+          <img src="Pramuka_Jawa_Timur.png" class="h-12" alt="Logo">
+        </div>
+
+        <h2 class="text-center font-bold text-base uppercase border-b border-t py-2 mb-4">Lembar Disposisi</h2>
+
+        <form id="formDisposisi" class="grid grid-cols-2 gap-4">
+          <div>
+            <label>Nomor Surat:</label>
+            <input name="no_surat" class="border w-full p-1" required />
+          </div>
+          <div>
+            <label>Status:</label>
+            <select name="status" class="border w-full p-1">
+              <option>Asli</option>
+              <option>Tembusan</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Tanggal Surat:</label>
+            <input type="date" name="tgl_surat" class="border w-full p-1" />
+          </div>
+          <div>
+            <label>Sifat:</label>
+            <select name="sifat" class="border w-full p-1">
+              <option>Sangat Segera</option>
+              <option>Segera</option>
+              <option>Biasa</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Lampiran:</label>
+            <input name="lampiran" class="border w-full p-1" />
+          </div>
+          <div>
+            <label>Diterima Tanggal:</label>
+            <input type="date" name="diterima" class="border w-full p-1" />
+          </div>
+
+          <div>
+            <label>No. Agenda:</label>
+            <input name="agenda" class="border w-full p-1" />
+          </div>
+          <div>
+            <label>Klasifikasi:</label>
+            <select name="klasifikasi" class="border w-full p-1">
+              <option>Sangat Rahasia</option>
+              <option>Rahasia</option>
+              <option>Biasa</option>
+            </select>
+          </div>
+
+          <div class="col-span-2">
+            <label>Dari:</label>
+            <input name="dari" class="border w-full p-1" />
+          </div>
+          <div class="col-span-2">
+            <label>Perihal:</label>
+            <input name="perihal" class="border w-full p-1" />
+          </div>
+
+          <div class="col-span-2">
+            <label>Disposisi Kepada:</label>
+            <textarea name="tujuan" class="border w-full p-1" rows="2"></textarea>
+          </div>
+
+          <div class="col-span-2">
+            <label>Petunjuk:</label>
+            <textarea name="instruksi" class="border w-full p-1" rows="3"></textarea>
+          </div>
+
+          <div class="col-span-2">
+            <label>Catatan Kepala:</label>
+            <input name="catatan" class="border w-full p-1" />
+          </div>
+
+          <div class="col-span-2">
+            <label>Tanggal Penyelesaian:</label>
+            <input type="date" name="tgl_selesai" class="border w-full p-1" />
+          </div>
+        </form>
+      </div>
+
+      <!-- Tombol -->
+      <div class="flex justify-between mt-6">
+        <a href="disposisi.html" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 text-sm">🔙 Kembali</a>
+        <div class="flex gap-2">
+          <button onclick="window.print()" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">🖨️ Cetak</button>
+          <button onclick="simpanDisposisi()" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded text-sm">💾 Simpan</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function simpanDisposisi() {
+      const form = document.getElementById('formDisposisi');
+      const dataBaru = {
+        no_surat: form.no_surat.value,
+        status: form.status.value,
+        tgl_surat: form.tgl_surat.value,
+        sifat: form.sifat.value,
+        lampiran: form.lampiran.value,
+        diterima: form.diterima.value,
+        agenda: form.agenda.value,
+        klasifikasi: form.klasifikasi.value,
+        dari: form.dari.value,
+        perihal: form.perihal.value,
+        tujuan: form.tujuan.value,
+        instruksi: form.instruksi.value,
+        catatan: form.catatan.value,
+        tgl_selesai: form.tgl_selesai.value
+      };
+      const dataLama = JSON.parse(localStorage.getItem('disposisiSurat') || '[]');
+      dataLama.push(dataBaru);
+      localStorage.setItem('disposisiSurat', JSON.stringify(dataLama));
+      alert('Disposisi berhasil disimpan!');
+      window.location.href = 'disposisi.html';
+    }
+  </script>
+
+</body>
+</html>

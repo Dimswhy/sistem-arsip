@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laporan Surat - Kwarran Pule</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white h-screen shadow-md fixed">
+    <div class="flex items-center justify-between p-4 border-b">
+      <img src="Pramuka_Jawa_Timur.png" alt="Logo Kiri" class="h-10">
+      <div class="text-center">
+        <p class="font-bold text-teal-700 text-sm">Kwarran Pule</p>
+        <p class="text-xs text-gray-500">e-Arsip</p>
+      </div>
+      <img src="Pramuka_Jawa_Timur.png" alt="Logo Kanan" class="h-10">
+    </div>
+    <nav class="p-4 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 px-4 rounded hover:bg-teal-100">🏠 Dashboard</a>
+      <a href="surat masuk.html" class="block py-2 px-4 rounded hover:bg-teal-100">📥 Surat Masuk</a>
+      <a href="surat keluar.html" class="block py-2 px-4 rounded hover:bg-teal-100">📤 Surat Keluar</a>
+      <a href="disposisi.html" class="block py-2 px-4 rounded hover:bg-teal-100">📌 Disposisi</a>
+      <a href="laporan.html" class="block py-2 px-4 rounded bg-teal-600 text-white">📑 Laporan</a>
+    </nav>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main class="ml-64 p-6">
+    <div class="bg-white rounded-xl shadow p-6 border-t-4 border-teal-600 max-w-4xl" id="print-area">
+      <div class="flex justify-between items-center mb-6 border-b pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-teal-700">📑 Laporan Surat</h1>
+          <p class="text-sm text-gray-500">Data Jumlah Surat Masuk & Keluar</p>
+        </div>
+        <img src="Pramuka_Jawa_Timur.png" alt="Logo" class="h-14">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-teal-100 p-4 rounded shadow text-center">
+          <p class="text-sm text-gray-600">Jumlah Surat Masuk</p>
+          <h2 class="text-3xl font-bold text-teal-800" id="jumlahMasuk">0</h2>
+        </div>
+        <div class="bg-orange-100 p-4 rounded shadow text-center">
+          <p class="text-sm text-gray-600">Jumlah Surat Keluar</p>
+          <h2 class="text-3xl font-bold text-orange-800" id="jumlahKeluar">0</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tombol Cetak -->
+    <div class="mt-4 flex justify-end">
+      <button onclick="window.print()" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700">
+        🖨️ Cetak Laporan
+      </button>
+    </div>
+  </main>
+
+  <script>
+    // Ambil data dari localStorage
+    const suratMasuk = JSON.parse(localStorage.getItem('suratMasuk') || '[]');
+    const suratKeluar = JSON.parse(localStorage.getItem('suratKeluar') || '[]');
+
+    document.getElementById('jumlahMasuk').textContent = suratMasuk.length;
+    document.getElementById('jumlahKeluar').textContent = suratKeluar.length;
+  </script>
+
+</body>
+</html>
